@@ -76,6 +76,7 @@ jobs:
       - uses: azure/k8s-set-context@v4
         with:
           method: azure
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           resource-group: ${{ vars.RESOURCE_GROUP }}
           cluster-name: ${{ vars.AKS_CLUSTER_NAME }}
       - uses: azure/k8s-deploy@v5
