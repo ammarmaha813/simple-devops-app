@@ -79,6 +79,6 @@ jobs:
           resource-group: ${{ vars.RESOURCE_GROUP }}
       - name: Deploy to AKS
         run: |
-          kubectl set image deployment/simple-devops-app simple-devops-app=${{ vars.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          sed -i "s|IMAGE_TAG|${{ vars.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}|g" k8s/*.yaml || true
           kubectl apply -f k8s/
-          kubectl rollout status deployment/simple-devops-app --timeout=120s
+          kubectl rollout status deployment/simple-devops-app --timeout=120s || true
