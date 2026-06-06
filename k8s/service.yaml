@@ -4,8 +4,10 @@ metadata:
   name: simple-devops-app
   labels:
     app: simple-devops-app
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: /health
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: simple-devops-app
   ports:
